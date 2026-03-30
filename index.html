@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Anti-FOUC : appliquer le thème avant le rendu -->
+  <script>
+    (function(){ var t=localStorage.getItem('nexus-theme'); if(t) document.documentElement.setAttribute('data-theme',t); })();
+  </script>
+  <title>NEXUS — Analyses & Décryptages</title>
+  <!-- Open Graph -->
+  <meta property="og:title"       content="NEXUS — Analyses & Décryptages">
+  <meta property="og:description" content="Le média de référence pour la macro-économie, la géopolitique, la crypto et la technologie.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://nexus-media.fr/index.html">
+  <meta property="og:image"       content="https://nexus-media.fr/og-cover.jpg">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="NEXUS — Analyses & Décryptages">
+  <meta name="twitter:description" content="Macro, économie, géopolitique, crypto, technologie.">
+  <!-- Styles -->
+  <link rel="stylesheet" href="variables.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ---- HERO ---- */
+    .hero { padding: var(--space-10) 0 var(--space-16); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--space-8);
+      align-items: start;
+    }
+
+    /* Article principal hero */
+    .hero-main > a {
+      display: block;
+      color: inherit;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .hero-date {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: var(--space-4);
+      transition: color var(--transition-fast);
+    }
+    .hero-main > a:hover .hero-title { color: var(--accent-macro); }
+    .hero-subtitle {
+      font-size: var(--text-md);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-5);
+      max-width: 600px;
+      font-style: italic;
+    }
+    .hero-author-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-6);
+    }
+    .hero-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      flex-shrink: 0;
+    }
+    .hero-image-wrap {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      aspect-ratio: 16/8;
+    }
+    .hero-image-wrap .placeholder {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Sidebar hero */
+    .hero-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      margin: var(--space-3) 0;
+    }
+    .sidebar-article {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      transition: background-color var(--transition-fast);
+    }
+    .sidebar-article:hover { background: var(--bg-secondary); }
+    .sidebar-thumb {
+      width: 80px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .sidebar-thumb .placeholder { width: 100%; height: 100%; }
+    .sidebar-info {}
+    .sidebar-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text-primary);
+      margin: var(--space-1) 0;
+      transition: color var(--transition-fast);
+    }
+    .sidebar-article:hover .sidebar-title { color: var(--accent-home); }
+    .sidebar-date {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+
+    /* ---- TENDANCES ---- */
+    .tendances-section { padding: var(--space-16) 0; background: var(--bg-secondary); }
+    .tendances-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+      margin-top: var(--space-8);
+    }
+    .tendance-item {
+      position: relative;
+      padding: var(--space-6);
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+    .tendance-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+    .tendance-num {
+      position: absolute;
+      bottom: -12px;
+      right: var(--space-4);
+      font-family: var(--font-serif);
+      font-size: 7rem;
+      font-weight: 900;
+      color: var(--border-subtle);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      transition: color var(--transition-theme);
+    }
+    [data-theme="dark"] .tendance-num { color: var(--bg-tertiary); }
+    .tendance-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+    .tendance-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: var(--space-3);
+      transition: color var(--transition-fast);
+    }
+    .tendance-item:hover .tendance-title { color: var(--accent-home); }
+    .tendance-date {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: var(--space-3);
+    }
+
+    /* ---- GRILLE D'ARTICLES ---- */
+    .articles-section { padding: var(--space-16) 0; }
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    /* ---- À LA UNE PAR THÈME ---- */
+    .theme-highlights { padding: var(--space-16) 0; background: var(--bg-secondary); }
+    .theme-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      padding: var(--space-5) 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .theme-row:first-child { border-top: 1px solid var(--border-subtle); }
+    .theme-cat-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+      min-width: 100px;
+      flex-shrink: 0;
+    }
+    .theme-row-title {
+      flex: 1;
+      font-family: var(--font-serif);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+      transition: color var(--transition-fast);
+    }
+    .theme-row:hover .theme-row-title { color: var(--accent-home); }
+    .theme-row-date {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .theme-voir-tout {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      flex-shrink: 0;
+      transition: color var(--transition-fast), gap var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-grid       { grid-template-columns: 1fr; }
+      .hero-sidebar    { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+      .sidebar-divider { display: none; }
+      .sidebar-article { grid-template-columns: 1fr; }
+      .sidebar-thumb   { display: none; }
+      .tendances-list  { grid-template-columns: 1fr 1fr; }
+      .articles-grid   { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero-title      { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+      .hero-sidebar    { grid-template-columns: 1fr; }
+      .tendances-list  { grid-template-columns: 1fr; }
+      .articles-grid   { grid-template-columns: 1fr; }
+      .theme-row       { flex-wrap: wrap; gap: var(--space-2); }
+      .theme-row-date  { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Barre de lecture -->
+  <div id="reading-progress"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">NEXUS<span class="logo-dot">.</span></a>
+      <div class="header-search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Rechercher…" autocomplete="off" aria-label="Rechercher un article">
+        <div id="search-results" class="search-results"></div>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Basculer thème clair / sombre">
+          <span class="theme-toggle-icon" id="theme-icon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" aria-label="Navigation principale">
+    <div class="nav-inner">
+      <a href="index.html"      class="nav-link" data-cat="home">Accueil</a>
+      <a href="macro.html"      class="nav-link" data-cat="macro">Macro</a>
+      <a href="economie.html"   class="nav-link" data-cat="economy">Économie</a>
+      <a href="geopolitique.html" class="nav-link" data-cat="geo">Géopolitique</a>
+      <a href="crypto.html"     class="nav-link" data-cat="crypto">Crypto</a>
+      <a href="technologie.html" class="nav-link" data-cat="tech">Technologie</a>
+      <a href="newsletter.html" class="nav-link" data-cat="newsletter">Newsletter</a>
+      <a href="about.html"      class="nav-link" data-cat="about">À propos</a>
+    </div>
+  </nav>
+
+  <!-- ===== MENU MOBILE ===== -->
+  <div class="mobile-nav-overlay" id="mobile-nav" aria-modal="true" role="dialog">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <a href="index.html" class="logo" style="font-size:1.2rem">NEXUS<span class="logo-dot">.</span></a>
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Fermer le menu">✕</button>
+      </div>
+      <a href="index.html"        class="mobile-nav-link" data-cat="home">Accueil</a>
+      <a href="macro.html"        class="mobile-nav-link" data-cat="macro">Macro</a>
+      <a href="economie.html"     class="mobile-nav-link" data-cat="economy">Économie</a>
+      <a href="geopolitique.html" class="mobile-nav-link" data-cat="geo">Géopolitique</a>
+      <a href="crypto.html"       class="mobile-nav-link" data-cat="crypto">Crypto</a>
+      <a href="technologie.html"  class="mobile-nav-link" data-cat="tech">Technologie</a>
+      <a href="newsletter.html"   class="mobile-nav-link" data-cat="newsletter">Newsletter</a>
+      <a href="about.html"        class="mobile-nav-link" data-cat="about">À propos</a>
+    </div>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- === HERO === -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+
+          <!-- Article principal -->
+          <article class="hero-main reveal">
+            <a href="article.html">
+              <div class="hero-meta">
+                <span class="badge badge-macro">Macro</span>
+                <span class="hero-date">30 mars 2026</span>
+              </div>
+              <h1 class="article-title hero-title">La Réserve Fédérale à la croisée des chemins&nbsp;: inflation persistante ou récession imminente&nbsp;?</h1>
+              <p class="hero-subtitle">Face à des données contradictoires, Jerome Powell doit naviguer entre deux écueils qui redéfinissent la politique monétaire américaine pour les prochaines années.</p>
+              <div class="hero-author-row">
+                <div class="hero-avatar grad-avatar-1"></div>
+                <span style="font-weight:500">Sophie Laurent</span>
+                <span class="dot-sep">·</span>
+                <time datetime="2026-03-30">30 mars 2026</time>
+                <span class="dot-sep">·</span>
+                <span>8 min de lecture</span>
+              </div>
+              <div class="hero-image-wrap">
+                <div class="placeholder grad-macro"></div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Sidebar — 3 articles secondaires -->
+          <aside class="hero-sidebar reveal reveal-delay-2">
+            <a href="article.html" class="sidebar-article">
+              <div class="sidebar-thumb">
+                <div class="placeholder grad-crypto"></div>
+              </div>
+              <div class="sidebar-info">
+                <span class="badge badge-crypto" style="font-size:0.6rem">Crypto</span>
+                <div class="sidebar-title">Le yuan numérique change la donne dans les échanges internationaux</div>
+                <span class="sidebar-date">29 mars 2026</span>
+              </div>
+            </a>
+            <div class="sidebar-divider"></div>
+            <a href="article.html" class="sidebar-article">
+              <div class="sidebar-thumb">
+                <div class="placeholder grad-tech"></div>
+              </div>
+              <div class="sidebar-info">
+                <span class="badge badge-tech" style="font-size:0.6rem">Tech</span>
+                <div class="sidebar-title">L'IA générative s'infiltre dans les salles de marché</div>
+                <span class="sidebar-date">28 mars 2026</span>
+              </div>
+            </a>
+            <div class="sidebar-divider"></div>
+            <a href="article.html" class="sidebar-article">
+              <div class="sidebar-thumb">
+                <div class="placeholder grad-geo"></div>
+              </div>
+              <div class="sidebar-info">
+                <span class="badge badge-geo" style="font-size:0.6rem">Géopolitique</span>
+                <div class="sidebar-title">La guerre commerciale reprend de plus belle entre Washington et Pékin</div>
+                <span class="sidebar-date">27 mars 2026</span>
+              </div>
+            </a>
+          </aside>
+
+        </div><!-- /.hero-grid -->
+      </div>
+    </section>
+
+    <!-- === TENDANCES === -->
+    <section class="tendances-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Tendances</div>
+          <h2 class="section-title">Ce que vous devez lire</h2>
+        </div>
+        <div class="tendances-list">
+
+          <article class="tendance-item reveal">
+            <div class="tendance-num">01</div>
+            <div class="tendance-meta">
+              <span class="badge badge-economy">Économie</span>
+            </div>
+            <a href="article.html">
+              <h3 class="tendance-title article-title">Les obligations d'État sous pression : la grande rotation obligataire de 2026</h3>
+            </a>
+            <time class="tendance-date" datetime="2026-03-28">28 mars 2026</time>
+            <div class="tags">
+              <span class="tag">#Obligations</span>
+              <span class="tag">#Taux</span>
+              <span class="tag">#BCE</span>
+            </div>
+          </article>
+
+          <article class="tendance-item reveal reveal-delay-2">
+            <div class="tendance-num">02</div>
+            <div class="tendance-meta">
+              <span class="badge badge-crypto">Crypto</span>
+            </div>
+            <a href="article.html">
+              <h3 class="tendance-title article-title">Bitcoin dépasse les 100 000 $ : ce que le franchissement de ce seuil symbolique change vraiment</h3>
+            </a>
+            <time class="tendance-date" datetime="2026-03-25">25 mars 2026</time>
+            <div class="tags">
+              <span class="tag">#Bitcoin</span>
+              <span class="tag">#BTC</span>
+              <span class="tag">#Halving</span>
+            </div>
+          </article>
+
+          <article class="tendance-item reveal reveal-delay-4">
+            <div class="tendance-num">03</div>
+            <div class="tendance-meta">
+              <span class="badge badge-geo">Géopolitique</span>
+            </div>
+            <a href="article.html">
+              <h3 class="tendance-title article-title">Le choc énergétique européen de 2026 : l'Allemagne à l'épreuve de la réindustrialisation</h3>
+            </a>
+            <time class="tendance-date" datetime="2026-03-22">22 mars 2026</time>
+            <div class="tags">
+              <span class="tag">#Énergie</span>
+              <span class="tag">#Europe</span>
+              <span class="tag">#Allemagne</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- === GRILLE D'ARTICLES === -->
+    <section class="articles-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">À la une</div>
+          <h2 class="section-title">Dernières analyses</h2>
+        </div>
+        <div class="articles-grid">
+
+          <!-- Carte 1 : Macro -->
+          <article class="article-card reveal">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-macro"></div></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="badge badge-macro">Macro</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">#Inflation</span>
+                  <span class="tag">#FED</span>
+                </div>
+                <h3 class="article-title">Powell prépare un pivot historique : les marchés en ordre de bataille</h3>
+                <p class="article-excerpt">Le président de la Fed multiplie les signaux ambigus avant le FOMC de mai, alimentant une volatilité exceptionnelle sur les obligations à deux ans.</p>
+                <div class="article-footer">
+                  <div class="author-info">
+                    <div class="author-avatar-sm grad-avatar-1"></div>
+                    <span class="article-author">Sophie Laurent</span>
+                  </div>
+                  <div class="article-date-read">
+                    <time datetime="2026-03-30">30 mars</time>
+                    <span class="dot-sep">·</span>
+                    <span>6 min</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Carte 2 : Économie -->
+          <article class="article-card reveal reveal-delay-1">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-economy"></div></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="badge badge-economy">Économie</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">#BCE</span>
+                  <span class="tag">#Euro</span>
+                </div>
+                <h3 class="article-title">La BCE maintient ses taux et divise les économistes européens</h3>
+                <p class="article-excerpt">Lagarde défend une posture attentiste face à une inflation de services qui résiste, pendant que la croissance de la zone euro s'érode trimestre après trimestre.</p>
+                <div class="article-footer">
+                  <div class="author-info">
+                    <div class="author-avatar-sm grad-avatar-2"></div>
+                    <span class="article-author">Marc Dubois</span>
+                  </div>
+                  <div class="article-date-read">
+                    <time datetime="2026-03-29">29 mars</time>
+                    <span class="dot-sep">·</span>
+                    <span>5 min</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Carte 3 : Géopolitique -->
+          <article class="article-card reveal reveal-delay-2">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-geo"></div></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="badge badge-geo">Géopolitique</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">#Chine</span>
+                  <span class="tag">#Pacifique</span>
+                </div>
+                <h3 class="article-title">Tensions en mer de Chine : les routes maritimes mondiales sous haute surveillance</h3>
+                <p class="article-excerpt">Les manœuvres militaires chinoises autour de Taïwan perturbent les flux commerciaux et obligent les armateurs à revoir leurs itinéraires à la hausse des coûts.</p>
+                <div class="article-footer">
+                  <div class="author-info">
+                    <div class="author-avatar-sm grad-avatar-3"></div>
+                    <span class="article-author">Camille Chen</span>
+                  </div>
+                  <div class="article-date-read">
+                    <time datetime="2026-03-28">28 mars</time>
+                    <span class="dot-sep">·</span>
+                    <span>7 min</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Carte 4 : Crypto -->
+          <article class="article-card reveal reveal-delay-1">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-crypto"></div></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="badge badge-crypto">Crypto</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">#Ethereum</span>
+                  <span class="tag">#DeFi</span>
+                </div>
+                <h3 class="article-title">ETH 2.0 : un an après, le bilan contrasté de la transition vers le Proof-of-Stake</h3>
+                <p class="article-excerpt">La consommation énergétique a chuté de 99,95 % mais la centralisation des validateurs soulève de nouvelles interrogations sur la décentralisation effective du réseau.</p>
+                <div class="article-footer">
+                  <div class="author-info">
+                    <div class="author-avatar-sm grad-avatar-4"></div>
+                    <span class="article-author">Ryo Tanaka</span>
+                  </div>
+                  <div class="article-date-read">
+                    <time datetime="2026-03-27">27 mars</time>
+                    <span class="dot-sep">·</span>
+                    <span>9 min</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Carte 5 : Technologie -->
+          <article class="article-card reveal reveal-delay-2">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-tech"></div></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="badge badge-tech">Technologie</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">#IA</span>
+                  <span class="tag">#OpenAI</span>
+                </div>
+                <h3 class="article-title">OpenAI vs Google : la guerre de l'IA générative entre dans une nouvelle phase décisive</h3>
+                <p class="article-excerpt">GPT-5 face à Gemini Ultra 2 — la bataille pour l'intégration entreprise remodèle les valorisations du secteur et redessine les alliances stratégiques en Silicon Valley.</p>
+                <div class="article-footer">
+                  <div class="author-info">
+                    <div class="author-avatar-sm grad-avatar-3"></div>
+                    <span class="article-author">Camille Chen</span>
+                  </div>
+                  <div class="article-date-read">
+                    <time datetime="2026-03-26">26 mars</time>
+                    <span class="dot-sep">·</span>
+                    <span>8 min</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Carte 6 : Macro -->
+          <article class="article-card reveal reveal-delay-3">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-macro"></div></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="badge badge-macro">Macro</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">#Récession</span>
+                  <span class="tag">#Chômage</span>
+                </div>
+                <h3 class="article-title">Récession 2026 : les signaux d'alarme que Wall Street choisit d'ignorer</h3>
+                <p class="article-excerpt">La courbe des taux s'est réinversée, les demandes d'allocations chômage progressent et les ISM manufacturiers sont en contraction pour le sixième mois consécutif.</p>
+                <div class="article-footer">
+                  <div class="author-info">
+                    <div class="author-avatar-sm grad-avatar-2"></div>
+                    <span class="article-author">Marc Dubois</span>
+                  </div>
+                  <div class="article-date-read">
+                    <time datetime="2026-03-25">25 mars</time>
+                    <span class="dot-sep">·</span>
+                    <span>10 min</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+        </div><!-- /.articles-grid -->
+      </div>
+    </section>
+
+    <!-- === BANDEAU NEWSLETTER === -->
+    <div class="newsletter-banner reveal">
+      <h2 class="banner-title">Ne manquez aucune analyse</h2>
+      <p class="banner-subtitle">Rejoignez 24 000 lecteurs qui reçoivent chaque semaine nos meilleures décryptages directement dans leur boîte mail.</p>
+      <form class="newsletter-form-inline" novalidate>
+        <input type="email" placeholder="votre@email.com" autocomplete="email" required aria-label="Votre adresse email">
+        <button type="submit" class="btn btn-dark">S'abonner</button>
+      </form>
+      <p class="newsletter-note">Pas de spam, désinscription en un clic. <a href="newsletter.html">En savoir plus →</a></p>
+    </div>
+
+    <!-- === À LA UNE PAR THÈME === -->
+    <section class="theme-highlights">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Par rubrique</div>
+          <h2 class="section-title">À la une par thème</h2>
+        </div>
+
+        <a href="article.html" class="theme-row reveal" style="text-decoration:none;display:flex;align-items:center;gap:var(--space-6);padding:var(--space-5) 0;border-bottom:1px solid var(--border-subtle)">
+          <span class="theme-cat-label" style="color:var(--accent-macro)">Macro</span>
+          <span class="theme-row-title article-title">Powell prépare un pivot historique : les marchés en ordre de bataille</span>
+          <span class="theme-row-date">30 mars 2026</span>
+          <a href="macro.html" class="theme-voir-tout" style="color:var(--accent-macro)" onclick="event.stopPropagation()">Voir tout →</a>
+        </a>
+
+        <a href="article.html" class="theme-row reveal reveal-delay-1" style="text-decoration:none;display:flex;align-items:center;gap:var(--space-6);padding:var(--space-5) 0;border-bottom:1px solid var(--border-subtle)">
+          <span class="theme-cat-label" style="color:var(--accent-economy)">Économie</span>
+          <span class="theme-row-title article-title">La BCE maintient ses taux et divise les économistes européens</span>
+          <span class="theme-row-date">29 mars 2026</span>
+          <a href="economie.html" class="theme-voir-tout" style="color:var(--accent-economy)" onclick="event.stopPropagation()">Voir tout →</a>
+        </a>
+
+        <a href="article.html" class="theme-row reveal reveal-delay-2" style="text-decoration:none;display:flex;align-items:center;gap:var(--space-6);padding:var(--space-5) 0;border-bottom:1px solid var(--border-subtle)">
+          <span class="theme-cat-label" style="color:var(--accent-geo)">Géopolitique</span>
+          <span class="theme-row-title article-title">Tensions en mer de Chine : les routes maritimes mondiales sous surveillance</span>
+          <span class="theme-row-date">28 mars 2026</span>
+          <a href="geopolitique.html" class="theme-voir-tout" style="color:var(--accent-geo)" onclick="event.stopPropagation()">Voir tout →</a>
+        </a>
+
+        <a href="article.html" class="theme-row reveal reveal-delay-3" style="text-decoration:none;display:flex;align-items:center;gap:var(--space-6);padding:var(--space-5) 0;border-bottom:1px solid var(--border-subtle)">
+          <span class="theme-cat-label" style="color:var(--accent-crypto)">Crypto</span>
+          <span class="theme-row-title article-title">Bitcoin dépasse les 100 000 $ : ce que ce seuil change vraiment</span>
+          <span class="theme-row-date">25 mars 2026</span>
+          <a href="crypto.html" class="theme-voir-tout" style="color:var(--accent-crypto)" onclick="event.stopPropagation()">Voir tout →</a>
+        </a>
+
+        <a href="article.html" class="theme-row reveal reveal-delay-4" style="text-decoration:none;display:flex;align-items:center;gap:var(--space-6);padding:var(--space-5) 0;border-bottom:1px solid var(--border-subtle)">
+          <span class="theme-cat-label" style="color:var(--accent-tech)">Technologie</span>
+          <span class="theme-row-title article-title">OpenAI vs Google : la guerre de l'IA générative entre dans une nouvelle phase</span>
+          <span class="theme-row-date">26 mars 2026</span>
+          <a href="technologie.html" class="theme-voir-tout" style="color:var(--accent-tech)" onclick="event.stopPropagation()">Voir tout →</a>
+        </a>
+
+      </div>
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">NEXUS<span class="logo-dot">.</span></a>
+          <p class="footer-tagline">Analyses rigoureuses, perspectives indépendantes sur la macro-économie, la géopolitique et les technologies qui reconfigurent le monde.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" aria-label="Flux RSS">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Rubriques</h4>
+          <ul>
+            <li><a href="macro.html">Macro</a></li>
+            <li><a href="economie.html">Économie</a></li>
+            <li><a href="geopolitique.html">Géopolitique</a></li>
+            <li><a href="crypto.html">Crypto</a></li>
+            <li><a href="technologie.html">Technologie</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>À propos</h4>
+          <ul>
+            <li><a href="about.html">Notre mission</a></li>
+            <li><a href="about.html">L'équipe</a></li>
+            <li><a href="about.html">Nos valeurs</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">CGU</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 NEXUS Media. Tous droits réservés.</p>
+        <nav class="footer-legal" aria-label="Liens légaux">
+          <a href="#">Mentions légales</a>
+          <a href="#">Confidentialité</a>
+          <a href="#">CGU</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+<!-- Bouton retour en haut -->
+<button id="back-to-top" aria-label="Retour en haut de page">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
+<script src="main.js"></script>
+</body>
+</html>

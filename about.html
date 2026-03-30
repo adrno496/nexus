@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function(){ var t=localStorage.getItem('nexus-theme'); if(t) document.documentElement.setAttribute('data-theme',t); })();
+  </script>
+  <title>À propos — NEXUS</title>
+  <meta property="og:title"       content="À propos de NEXUS">
+  <meta property="og:description" content="Notre mission : fournir des analyses rigoureuses et indépendantes sur les grandes tendances économiques et géopolitiques mondiales.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://nexus-media.fr/about.html">
+  <meta property="og:image"       content="https://nexus-media.fr/og-about.jpg">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="À propos de NEXUS">
+  <meta name="twitter:description" content="Notre mission, notre équipe, nos valeurs.">
+  <link rel="stylesheet" href="variables.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ---- Page header ---- */
+    .about-hero {
+      max-width: var(--content-width);
+      margin: var(--space-12) auto;
+      padding: 0 var(--space-6);
+      text-align: center;
+    }
+    .about-page-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: var(--space-5);
+      letter-spacing: -0.02em;
+    }
+    .about-mission {
+      font-size: var(--text-xl);
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ---- Équipe ---- */
+    .team-section { padding: var(--space-8) 0 var(--space-16); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+    .team-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-8) var(--space-6);
+      text-align: center;
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+    .team-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: var(--radius-full);
+      margin: 0 auto var(--space-5);
+    }
+    .team-name {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-1);
+    }
+    .team-role {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-4);
+    }
+    .team-bio {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ---- Valeurs ---- */
+    .values-section { padding: var(--space-8) 0 var(--space-16); background: var(--bg-secondary); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+    .value-card {
+      padding: var(--space-8) var(--space-6);
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .value-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      background: var(--accent-home-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-5);
+      color: var(--accent-home);
+    }
+    .value-icon svg { width: 26px; height: 26px; }
+    .value-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-3);
+    }
+    .value-text { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.7; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .team-grid   { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .values-grid { grid-template-columns: 1fr; }
+      .about-page-title { font-size: var(--text-3xl); }
+    }
+    @media (max-width: 480px) {
+      .team-grid   { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div id="reading-progress"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">NEXUS<span class="logo-dot">.</span></a>
+      <div class="header-search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Rechercher…" autocomplete="off">
+        <div id="search-results" class="search-results"></div>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Basculer le thème">
+          <span class="theme-toggle-icon" id="theme-icon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html"        class="nav-link" data-cat="home">Accueil</a>
+      <a href="macro.html"        class="nav-link" data-cat="macro">Macro</a>
+      <a href="economie.html"     class="nav-link" data-cat="economy">Économie</a>
+      <a href="geopolitique.html" class="nav-link" data-cat="geo">Géopolitique</a>
+      <a href="crypto.html"       class="nav-link" data-cat="crypto">Crypto</a>
+      <a href="technologie.html"  class="nav-link" data-cat="tech">Technologie</a>
+      <a href="newsletter.html"   class="nav-link" data-cat="newsletter">Newsletter</a>
+      <a href="about.html"        class="nav-link" data-cat="about">À propos</a>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav-overlay" id="mobile-nav">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <a href="index.html" class="logo" style="font-size:1.2rem">NEXUS<span class="logo-dot">.</span></a>
+        <button class="mobile-nav-close" id="mobile-nav-close">✕</button>
+      </div>
+      <a href="index.html"        class="mobile-nav-link">Accueil</a>
+      <a href="macro.html"        class="mobile-nav-link">Macro</a>
+      <a href="economie.html"     class="mobile-nav-link">Économie</a>
+      <a href="geopolitique.html" class="mobile-nav-link">Géopolitique</a>
+      <a href="crypto.html"       class="mobile-nav-link">Crypto</a>
+      <a href="technologie.html"  class="mobile-nav-link">Technologie</a>
+      <a href="newsletter.html"   class="mobile-nav-link">Newsletter</a>
+      <a href="about.html"        class="mobile-nav-link active">À propos</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- Fil d'ariane -->
+    <nav class="breadcrumb" aria-label="Fil d'ariane">
+      <a href="index.html">Accueil</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">À propos</span>
+    </nav>
+
+    <!-- Hero About -->
+    <div class="about-hero reveal">
+      <div class="section-label" style="justify-content:center;margin-bottom:var(--space-3)">À propos</div>
+      <h1 class="about-page-title">Le journalisme économique que vous méritez</h1>
+      <p class="about-mission">NEXUS est né d'une conviction simple&nbsp;: les grandes décisions macro-économiques, géopolitiques et technologiques méritent une couverture rigoureuse, accessible et indépendante de toute pression éditoriale commerciale.</p>
+    </div>
+
+    <!-- Séparateur -->
+    <div class="deco-sep"><div class="deco-diamond"></div></div>
+
+    <!-- Section Équipe -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-header" style="text-align:center">
+          <div class="section-label" style="justify-content:center">L'équipe</div>
+          <h2 class="section-title">Les visages derrière NEXUS</h2>
+        </div>
+        <div class="team-grid">
+
+          <div class="team-card reveal">
+            <div class="team-avatar grad-avatar-1"></div>
+            <div class="team-name">Sophie Laurent</div>
+            <div class="team-role">Rédactrice en chef · Macro & Marchés</div>
+            <p class="team-bio">Ancienne économiste à la Banque de France, Sophie apporte une rigueur analytique et une vision institutionnelle rare dans le paysage médiatique. Elle couvre les politiques monétaires mondiales depuis plus de 12 ans.</p>
+          </div>
+
+          <div class="team-card reveal reveal-delay-2">
+            <div class="team-avatar grad-avatar-2"></div>
+            <div class="team-name">Marc Dubois</div>
+            <div class="team-role">Analyste senior · Économie & Géopolitique</div>
+            <p class="team-bio">Docteur en économie internationale, Marc a été correspondant pour plusieurs publications financières de référence à Washington et Bruxelles avant de rejoindre NEXUS à sa fondation en 2022.</p>
+          </div>
+
+          <div class="team-card reveal reveal-delay-4">
+            <div class="team-avatar grad-avatar-3"></div>
+            <div class="team-name">Camille Chen</div>
+            <div class="team-role">Correspondante · Technologie & Crypto</div>
+            <p class="team-bio">Issue de la Silicon Valley, Camille a couvert l'émergence des grandes plateformes numériques avant de se spécialiser dans les actifs crypto et l'impact sociétal de l'intelligence artificielle.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Séparateur -->
+    <div class="deco-sep"><div class="deco-diamond"></div></div>
+
+    <!-- Section Valeurs -->
+    <section class="values-section">
+      <div class="container">
+        <div class="section-header" style="text-align:center">
+          <div class="section-label" style="justify-content:center">Ce en quoi nous croyons</div>
+          <h2 class="section-title">Nos valeurs éditoriales</h2>
+        </div>
+        <div class="values-grid">
+
+          <div class="value-card reveal">
+            <div class="value-icon" style="background:var(--accent-macro-soft);color:var(--accent-macro)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="value-title">Indépendance</div>
+            <p class="value-text">NEXUS n'est adossé à aucun groupe financier, industriel ou politique. Notre modèle économique repose exclusivement sur les lecteurs. Aucun annonceur ne peut influencer notre ligne éditoriale.</p>
+          </div>
+
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-icon" style="background:var(--accent-economy-soft);color:var(--accent-economy)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="value-title">Rigueur</div>
+            <p class="value-text">Chaque affirmation publiée est sourcée et vérifiée. Nos auteurs s'appuient sur des données primaires, des études académiques et des entretiens avec des experts reconnus dans leurs domaines.</p>
+          </div>
+
+          <div class="value-card reveal reveal-delay-4">
+            <div class="value-icon" style="background:var(--accent-tech-soft);color:var(--accent-tech)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <div class="value-title">Accessibilité</div>
+            <p class="value-text">La complexité économique ne doit pas être un obstacle. Nous avons la conviction que chaque lecteur, quel que soit son niveau, mérite des analyses claires, structurées et honnêtes.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Bandeau Newsletter -->
+    <div class="newsletter-banner reveal">
+      <h2 class="banner-title">Rejoindre la communauté NEXUS</h2>
+      <p class="banner-subtitle">24 000 lecteurs curieux reçoivent chaque semaine nos meilleures analyses. Rejoignez-les.</p>
+      <form class="newsletter-form-inline" novalidate>
+        <input type="email" placeholder="votre@email.com" autocomplete="email" required>
+        <button type="submit" class="btn btn-dark">S'abonner</button>
+      </form>
+      <p class="newsletter-note">Ou <a href="newsletter.html">découvrez notre newsletter →</a></p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">NEXUS<span class="logo-dot">.</span></a>
+          <p class="footer-tagline">Analyses rigoureuses, perspectives indépendantes sur la macro-économie, la géopolitique et les technologies.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" aria-label="RSS"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Rubriques</h4><ul><li><a href="macro.html">Macro</a></li><li><a href="economie.html">Économie</a></li><li><a href="geopolitique.html">Géopolitique</a></li><li><a href="crypto.html">Crypto</a></li><li><a href="technologie.html">Technologie</a></li></ul></div>
+        <div class="footer-col"><h4>À propos</h4><ul><li><a href="about.html">Notre mission</a></li><li><a href="about.html">L'équipe</a></li><li><a href="newsletter.html">Newsletter</a></li></ul></div>
+        <div class="footer-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">CGU</a></li><li><a href="#">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 NEXUS Media. Tous droits réservés.</p>
+        <nav class="footer-legal"><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">CGU</a></nav>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<button id="back-to-top" aria-label="Retour en haut">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="main.js"></script>
+</body>
+</html>

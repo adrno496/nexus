@@ -1,0 +1,144 @@
+/* ============================================================
+   NEXUS — Design Tokens
+   variables.css — Importer en premier dans chaque page
+   ============================================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+/* ============================================================
+   MODE CLAIR (défaut)
+   ============================================================ */
+:root {
+  /* ---- Palette de base ---- */
+  --bg-primary:       #F7F5F0;
+  --bg-secondary:     #EDEAE3;
+  --bg-tertiary:      #E4E0D8;
+  --bg-card:          #FFFFFF;
+  --surface-elevated: #FFFFFF;
+
+  --text-primary:   #1A1816;
+  --text-secondary: #4A4642;
+  --text-muted:     #7A7470;
+  --text-inverse:   #F7F5F0;
+
+  --border-color:  #D8D4CC;
+  --border-subtle: #EAE7E0;
+
+  /* ---- Footer (toujours sombre) ---- */
+  --footer-bg:         #111010;
+  --footer-text:       #7A7470;
+  --footer-text-light: #F0EDE6;
+  --footer-border:     #2A2826;
+
+  /* ---- Accents par catégorie ---- */
+  --accent-home:    #C8392B;
+  --accent-macro:   #C8392B;
+  --accent-economy: #1A6B4A;
+  --accent-geo:     #1E4D8C;
+  --accent-crypto:  #B8962E;
+  --accent-tech:    #8B5CF6;
+  --accent-news:    #C8392B;
+  --accent-about:   #4A4642;
+
+  /* ---- Accents en version douce (pour backgrounds) ---- */
+  --accent-home-soft:    rgba(200, 57, 43, 0.08);
+  --accent-macro-soft:   rgba(200, 57, 43, 0.08);
+  --accent-economy-soft: rgba(26, 107, 74, 0.08);
+  --accent-geo-soft:     rgba(30, 77, 140, 0.08);
+  --accent-crypto-soft:  rgba(184, 150, 46, 0.08);
+  --accent-tech-soft:    rgba(139, 92, 246, 0.08);
+
+  /* ---- Typographie ---- */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:  'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:  'DM Mono', 'Courier New', monospace;
+
+  /* Tailles fluides via clamp() */
+  --text-xs:   clamp(0.65rem,  0.9vw,  0.75rem);
+  --text-sm:   clamp(0.8rem,   1.1vw,  0.875rem);
+  --text-base: clamp(0.9375rem,1.4vw,  1rem);
+  --text-md:   clamp(1rem,     1.6vw,  1.125rem);
+  --text-lg:   clamp(1.1rem,   1.9vw,  1.25rem);
+  --text-xl:   clamp(1.25rem,  2.2vw,  1.5rem);
+  --text-2xl:  clamp(1.5rem,   2.8vw,  2rem);
+  --text-3xl:  clamp(2rem,     3.5vw,  2.75rem);
+  --text-4xl:  clamp(2.5rem,   4.5vw,  3.5rem);
+  --text-5xl:  clamp(3rem,     5.5vw,  4.5rem);
+
+  /* ---- Espacements ---- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ---- Border Radius ---- */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* ---- Ombres ---- */
+  --shadow-sm:         0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:         0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:         0 10px 30px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.05);
+  --shadow-xl:         0 20px 50px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 16px 48px rgba(0,0,0,0.14);
+
+  /* ---- Transitions ---- */
+  --transition-fast:  150ms ease;
+  --transition-base:  250ms ease;
+  --transition-slow:  400ms ease;
+  --transition-theme: 300ms ease;
+
+  /* ---- Layout ---- */
+  --max-width:          1280px;
+  --content-width:      720px;
+  --header-height:      64px;
+  --nav-height:         44px;
+  --reading-bar-height: 3px;
+
+  /* ---- Z-index ---- */
+  --z-base:     1;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-top:      500;
+}
+
+/* ============================================================
+   MODE SOMBRE
+   fond très sombre #111010, surfaces #1C1B1A
+   ============================================================ */
+[data-theme="dark"] {
+  --bg-primary:       #111010;
+  --bg-secondary:     #1C1B1A;
+  --bg-tertiary:      #252322;
+  --bg-card:          #1C1B1A;
+  --surface-elevated: #252322;
+
+  --text-primary:   #F0EDE6;
+  --text-secondary: #B8B4AE;
+  --text-muted:     #6A6662;
+  --text-inverse:   #1A1816;
+
+  --border-color:  #2E2C2A;
+  --border-subtle: #222120;
+
+  --shadow-sm:         0 1px 3px rgba(0,0,0,0.35);
+  --shadow-md:         0 4px 12px rgba(0,0,0,0.45);
+  --shadow-lg:         0 10px 30px rgba(0,0,0,0.55);
+  --shadow-xl:         0 20px 50px rgba(0,0,0,0.65);
+  --shadow-card-hover: 0 16px 48px rgba(0,0,0,0.70);
+}
