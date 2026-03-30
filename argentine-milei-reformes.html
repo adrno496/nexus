@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function(){ var t=localStorage.getItem('nexus-theme'); if(t) document.documentElement.setAttribute('data-theme',t); })();
+  </script>
+  <title>Argentine Milei : analyse des réformes économiques 2026 — NEXUS</title>
+  <meta name="description" content="Analyse complète des réformes économiques de Javier Milei en Argentine : inflation, croissance, opportunités d'investissement.">
+  <link rel="canonical" href="https://nexus-media.fr/argentine-milei-reformes.html">
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Argentine : le pari radical de Milei est-il en train de réussir ?">
+  <meta property="og:description" content="Analyse complète des réformes économiques de Javier Milei en Argentine : inflation, croissance, opportunités d'investissement.">
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://nexus-media.fr/argentine-milei-reformes.html">
+  <meta property="og:image"       content="https://img.20mn.fr/HOGzIdDFTdqqUQ-Kd88X1Sk/1444x920_presidential-hopeful-of-the-liberty-advances-coalition-javier-milei-brandishes-a-chainsaw-during-a-campaign-event-in-la-plata-argentina-tuesday-sept-12-2023-general-elections-are-set-in-argentina-for-oct-22-ap-photo-natacha-pisarenko-xnp115-23255775564454-2309122340">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Argentine : le pari radical de Milei est-il en train de réussir ?">
+  <meta name="twitter:description" content="Analyse complète des réformes économiques de Javier Milei en Argentine : inflation, croissance, opportunités d'investissement.">
+  <link rel="stylesheet" href="variables.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ---- Accent économie pour cet article ---- */
+    :root {
+      --article-accent: var(--accent-economy);
+      --article-accent-soft: var(--accent-economy-soft);
+    }
+
+    /* ---- En-tête article ---- */
+    .article-header {
+      max-width: var(--content-width);
+      margin: var(--space-8) auto 0;
+      padding: 0 var(--space-6);
+    }
+    .article-header .article-meta-top {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+      flex-wrap: wrap;
+    }
+    .article-main-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--text-primary);
+      margin-bottom: var(--space-5);
+      letter-spacing: -0.02em;
+    }
+    .article-chapeau {
+      font-family: var(--font-sans);
+      font-size: var(--text-xl);
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: var(--space-6);
+    }
+    .article-author-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-4) 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: var(--space-8);
+    }
+    .article-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      flex-shrink: 0;
+    }
+    .author-details { flex: 1; }
+    .author-name-lg  { font-weight: 600; font-size: var(--text-sm); color: var(--text-primary); }
+    .author-meta-sm  { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); margin-top: 2px; }
+
+    /* ---- Barre partage mobile ---- */
+    .share-bar-mobile {
+      display: none;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      margin-bottom: var(--space-4);
+    }
+    .share-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+      cursor: pointer;
+      min-width: 44px;
+      min-height: 44px;
+    }
+    .share-btn:hover { background: var(--border-color); color: var(--text-primary); border-color: var(--text-muted); }
+    .share-btn svg   { width: 16px; height: 16px; }
+
+    /* ---- Image hero ---- */
+    .article-hero-image {
+      max-width: calc(var(--content-width) + 200px);
+      margin: 0 auto var(--space-10);
+      padding: 0 var(--space-6);
+      animation: fadeInUp 0.4s ease both;
+    }
+    .article-hero-image img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: var(--radius-xl);
+      display: block;
+    }
+    .image-caption {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: var(--space-3);
+    }
+
+    /* ---- Fade-in animation ---- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .article-header  { animation: fadeInUp 0.4s ease both; }
+    .article-layout  { animation: fadeInUp 0.4s 0.1s ease both; }
+
+    /* ---- Layout article (body + share bar) ---- */
+    .article-layout {
+      display: flex;
+      gap: var(--space-12);
+      max-width: calc(var(--content-width) + 140px);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      position: relative;
+    }
+
+    /* ---- Share bar desktop flottante ---- */
+    .share-bar-desktop {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      position: sticky;
+      top: calc(var(--header-height) + var(--nav-height) + var(--space-8));
+      height: fit-content;
+      flex-shrink: 0;
+    }
+    .share-bar-desktop .share-btn { width: 40px; height: 40px; }
+    .share-divider-v { width: 1px; height: 24px; background: var(--border-color); margin: var(--space-1) auto; }
+
+    /* ---- Corps de l'article ---- */
+    .article-body { flex: 1; min-width: 0; }
+    .article-body p {
+      font-size: var(--text-md);
+      line-height: 1.85;
+      color: var(--text-primary);
+      margin-bottom: var(--space-6);
+    }
+    .article-body h2 {
+      font-family: var(--font-serif);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: var(--space-10) 0 var(--space-5);
+      line-height: 1.2;
+    }
+    .article-body h3 {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: var(--space-8) 0 var(--space-4);
+    }
+    .article-body ul,
+    .article-body ol {
+      list-style: none;
+      margin: var(--space-4) 0 var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .article-body ul li,
+    .article-body ol li {
+      padding-left: var(--space-6);
+      position: relative;
+      font-size: var(--text-md);
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+    .article-body ul li::before {
+      content: '';
+      position: absolute;
+      left: var(--space-2);
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--accent-economy);
+    }
+    .article-body ol { counter-reset: list-counter; }
+    .article-body ol li { counter-increment: list-counter; }
+    .article-body ol li::before {
+      content: counter(list-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--accent-economy);
+      background: var(--accent-economy-soft);
+      width: 20px;
+      height: 20px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.25em;
+    }
+    blockquote {
+      margin: var(--space-10) 0;
+      padding: var(--space-6) var(--space-8);
+      border-left: 3px solid var(--accent-economy);
+      background: var(--accent-economy-soft);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+    blockquote p {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl) !important;
+      font-style: italic;
+      color: var(--text-primary) !important;
+      margin-bottom: var(--space-3) !important;
+      line-height: 1.55 !important;
+    }
+    blockquote cite {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      font-style: normal;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- Image inline dans le corps ---- */
+    .article-body .inline-image {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      margin: var(--space-8) 0 var(--space-3);
+      display: block;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .article-body .inline-caption {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: var(--space-8);
+    }
+
+    /* ---- CTA bas de page ---- */
+    .article-cta {
+      text-align: center;
+      margin: var(--space-16) 0 var(--space-8);
+    }
+    .article-cta .btn {
+      padding: var(--space-4) var(--space-8);
+      font-size: var(--text-md);
+    }
+
+    /* ---- Section articles similaires ---- */
+    .related-section {
+      padding: var(--space-16) 0;
+      background: var(--bg-secondary);
+      margin-top: var(--space-8);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 1100px) {
+      .share-bar-desktop { display: none; }
+      .share-bar-mobile  { display: flex; }
+    }
+    @media (max-width: 768px) {
+      .article-main-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+      .article-chapeau    { font-size: var(--text-lg); }
+      .article-body p     { font-size: 1rem; }
+      .related-grid       { grid-template-columns: 1fr; }
+      .article-layout     { padding: 0 var(--space-4); }
+      .article-header     { padding: 0 var(--space-4); }
+      .article-hero-image { padding: 0 var(--space-4); }
+      .article-hero-image img { max-height: none; min-height: 220px; height: auto; }
+      .share-bar-mobile   { flex-wrap: wrap; gap: var(--space-2); }
+    }
+    @media (max-width: 480px) {
+      .related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div id="reading-progress"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">NEXUS<span class="logo-dot">.</span></a>
+      <div class="header-search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Rechercher…" autocomplete="off">
+        <div id="search-results" class="search-results"></div>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Basculer le thème">
+          <span class="theme-toggle-icon" id="theme-icon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html"        class="nav-link" data-cat="home">Accueil</a>
+      <a href="macro.html"        class="nav-link" data-cat="macro">Macro</a>
+      <a href="economie.html"     class="nav-link" data-cat="economy">Économie</a>
+      <a href="geopolitique.html" class="nav-link" data-cat="geo">Géopolitique</a>
+      <a href="crypto.html"       class="nav-link" data-cat="crypto">Crypto</a>
+      <a href="technologie.html"  class="nav-link" data-cat="tech">Technologie</a>
+      <a href="newsletter.html"   class="nav-link" data-cat="newsletter">Newsletter</a>
+      <a href="about.html"        class="nav-link" data-cat="about">À propos</a>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav-overlay" id="mobile-nav">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <a href="index.html" class="logo" style="font-size:1.2rem">NEXUS<span class="logo-dot">.</span></a>
+        <button class="mobile-nav-close" id="mobile-nav-close">✕</button>
+      </div>
+      <a href="index.html"        class="mobile-nav-link">Accueil</a>
+      <a href="macro.html"        class="mobile-nav-link">Macro</a>
+      <a href="economie.html"     class="mobile-nav-link active">Économie</a>
+      <a href="geopolitique.html" class="mobile-nav-link">Géopolitique</a>
+      <a href="crypto.html"       class="mobile-nav-link">Crypto</a>
+      <a href="technologie.html"  class="mobile-nav-link">Technologie</a>
+      <a href="newsletter.html"   class="mobile-nav-link">Newsletter</a>
+      <a href="about.html"        class="mobile-nav-link">À propos</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- Fil d'ariane -->
+    <nav class="breadcrumb" aria-label="Fil d'ariane">
+      <a href="index.html">Accueil</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="economie.html">Économie</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">Argentine : le pari radical de Javier Milei</span>
+    </nav>
+
+    <!-- En-tête article -->
+    <header class="article-header">
+      <div class="article-meta-top">
+        <span class="badge badge-economy">Analyse</span>
+        <div class="tags">
+          <span class="tag">#Argentine</span>
+          <span class="tag">#Milei</span>
+          <span class="tag">#Réformes</span>
+          <span class="tag">#Inflation</span>
+          <span class="tag">#AmériqueLatine</span>
+        </div>
+      </div>
+
+      <h1 class="article-main-title article-title">Argentine&nbsp;: le pari radical de Javier Milei est-il en train de réussir&nbsp;?</h1>
+
+      <p class="article-chapeau">Entre inflation record, réformes radicales et retour de la croissance, l'Argentine devient un laboratoire économique sous haute tension.</p>
+
+      <!-- Barre partage mobile -->
+      <div class="share-bar-mobile">
+        <span class="share-label">Partager</span>
+        <a href="https://twitter.com/intent/tweet?url=https://nexus-media.fr/argentine-milei-reformes.html&text=Argentine%20%3A%20le%20pari%20radical%20de%20Javier%20Milei%20est-il%20en%20train%20de%20r%C3%A9ussir%20%3F"
+           class="share-btn" target="_blank" rel="noopener" aria-label="Partager sur X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://nexus-media.fr/argentine-milei-reformes.html"
+           class="share-btn" target="_blank" rel="noopener" aria-label="Partager sur LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <button class="share-btn" data-action="copy-link" title="Copier le lien" aria-label="Copier le lien">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+
+      <div class="article-author-row">
+        <div class="article-avatar grad-avatar-2"></div>
+        <div class="author-details">
+          <div class="author-name-lg">Marc Dubois</div>
+          <div class="author-meta-sm">
+            <time datetime="2026-03-30">30 mars 2026</time>
+            &nbsp;·&nbsp; 6 min de lecture
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Image hero -->
+    <div class="article-hero-image">
+      <img src="https://img.20mn.fr/HOGzIdDFTdqqUQ-Kd88X1Sk/1444x920_presidential-hopeful-of-the-liberty-advances-coalition-javier-milei-brandishes-a-chainsaw-during-a-campaign-event-in-la-plata-argentina-tuesday-sept-12-2023-general-elections-are-set-in-argentina-for-oct-22-ap-photo-natacha-pisarenko-xnp115-23255775564454-2309122340"
+           alt="Javier Milei réformes économiques Argentine 2026">
+      <p class="image-caption">Javier Milei lors d'un meeting de campagne à La Plata, septembre 2023 — AP / Natacha Pisarenko</p>
+    </div>
+
+    <!-- Corps de l'article + share bar desktop -->
+    <div class="article-layout">
+
+      <!-- Share bar flottante (desktop) -->
+      <aside class="share-bar-desktop" aria-label="Partager l'article">
+        <a href="https://twitter.com/intent/tweet?url=https://nexus-media.fr/argentine-milei-reformes.html&text=Argentine%20%3A%20le%20pari%20radical%20de%20Javier%20Milei%20est-il%20en%20train%20de%20r%C3%A9ussir%20%3F"
+           class="share-btn" target="_blank" rel="noopener" title="Partager sur X" aria-label="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://nexus-media.fr/argentine-milei-reformes.html"
+           class="share-btn" target="_blank" rel="noopener" title="Partager sur LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <div class="share-divider-v"></div>
+        <button class="share-btn" data-action="copy-link" title="Copier le lien" aria-label="Copier le lien">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </aside>
+
+      <!-- Corps de l'article -->
+      <article class="article-body">
+
+        <p>Fin 2023, Javier Milei arrive au pouvoir avec un programme radical, presque inédit dans une démocratie moderne. L'Argentine fait alors face à une situation critique : inflation supérieure à 200 %, plus de 40 % de pauvreté, une économie paralysée par des décennies d'interventionnisme et une perte totale de confiance dans la monnaie nationale. Face à cela, Milei ne propose pas une réforme progressive — mais une thérapie de choc.</p>
+
+        <h2>Une thérapie de choc pour un pays au bord du gouffre</h2>
+
+        <p>Son programme est clair : réduire drastiquement le poids de l'État et libérer l'économie. Les mesures mises en place dès les premières semaines de gouvernement sont sans précédent dans l'histoire récente du pays.</p>
+
+        <ul>
+          <li>Réduction des ministères (de 18 à 9)</li>
+          <li>Suppression massive de subventions à l'énergie et aux transports</li>
+          <li>Coupes budgétaires immédiates dans toutes les administrations</li>
+          <li>Dérégulation de milliers de normes administratives</li>
+          <li>Privatisations d'entreprises publiques déficitaires</li>
+          <li>Libéralisation du marché du travail</li>
+          <li>Fin de nombreux contrôles économiques et restrictions de change</li>
+        </ul>
+
+        <p>Résultat direct de ces mesures : un retour à l'excédent budgétaire primaire dès 2024, une première depuis plus d'une décennie pour l'Argentine.</p>
+
+        <img class="inline-image"
+             src="https://focus.courrierinternational.com/2023/06/06/0/0/2200/1845/1280/0/60/0/cdacb18_1686058625278-000-33fw2qt.jpeg"
+             alt="Protestataires en Argentine face aux réformes économiques">
+        <p class="inline-caption">Des Argentins manifestent face aux réformes d'austérité — AFP</p>
+
+        <h2>L'inflation, principal combat — une chute spectaculaire mais incomplète</h2>
+
+        <p>L'indicateur phare du programme Milei est sans conteste l'inflation. Lorsqu'il prend les rênes du pays, celle-ci dépasse les 200 % en rythme annualisé — l'une des pires au monde. Deux ans plus tard, le tableau est radicalement différent.</p>
+
+        <blockquote>
+          <p>«&nbsp;L'inflation passe de plus de 200 % à environ 30 % en 2025-2026. C'est une amélioration massive, mais le niveau reste élevé et la confiance dans la monnaie met du temps à revenir.&nbsp;»</p>
+          <cite>— Analyse NEXUS, données FMI / INDEC</cite>
+        </blockquote>
+
+        <p>Une grande partie de l'économie fonctionne encore en dollars officieux. Des centaines de milliards de dollars restent conservés hors du système bancaire, témoignant d'une défiance profondément enracinée dans la mémoire collective argentine. La reconstruction de la confiance monétaire prendra des années.</p>
+
+        <h2>Croissance et emploi — des signaux encourageants</h2>
+
+        <p>Malgré le choc initial — inévitable dans toute thérapie de choc — les indicateurs macroéconomiques affichent une trajectoire encourageante à mi-parcours du mandat :</p>
+
+        <ul>
+          <li><strong>Croissance du PIB&nbsp;:</strong> environ +4 % sur l'exercice 2025</li>
+          <li><strong>Chômage&nbsp;:</strong> redescendu à ~5,4 %, niveau historiquement bas</li>
+          <li><strong>Pauvreté&nbsp;:</strong> redescend autour de 30 % après un pic douloureusement haut à +50 %</li>
+        </ul>
+
+        <p>Un schéma classique se dessine : choc initial → douleur sociale intense → stabilisation des fondamentaux → amorce d'une reprise. L'Argentine suit ce manuel, mais à une vitesse que peu d'économistes anticipaient.</p>
+
+        <h2>Libertarien en théorie, pragmatique dans la pratique</h2>
+
+        <p>L'un des enseignements les plus intéressants du cas Milei est l'écart entre le discours idéologique et la réalité gouvernementale. Le président qui brandissait une tronçonneuse en meeting adopte finalement une approche plus nuancée que son discours initial ne le laissait présager :</p>
+
+        <ul>
+          <li>Maintien et renforcement des relations commerciales avec la Chine</li>
+          <li>Abandon de la dollarisation immédiate, jugée trop risquée à court terme</li>
+          <li>Utilisation classique des institutions (banque centrale, accords FMI)</li>
+          <li>Négociation d'un accord de 20 milliards de dollars avec le FMI</li>
+        </ul>
+
+        <p>Gouverner oblige à composer avec le réel. La rhétorique libertarienne s'est muée en pragmatisme de gestionnaire, ce qui est précisément ce qui a permis d'éviter un effondrement total.</p>
+
+        <img class="inline-image"
+             src="https://focus.courrierinternational.com/2022/11/14/0/0/5038/3456/1280/0/60/0/92cf159_1668442508894-rtx7hm4x.JPG"
+             alt="Buenos Aires économie Argentine">
+        <p class="inline-caption">Buenos Aires, capitale économique de l'Argentine — Reuters</p>
+
+        <h2>Un tournant pour l'Amérique latine&nbsp;?</h2>
+
+        <p>L'expérience argentine ne se lit pas uniquement à l'échelle nationale. Elle pourrait initier un mouvement plus large à l'échelle du continent : des réformes structurelles au Brésil, des dynamiques libérales dans plusieurs pays de la région, et un intérêt croissant des investisseurs internationaux pour une Amérique latine longtemps boudée. La question est désormais de savoir si l'Argentine peut servir de modèle — ou de contre-exemple — pour ses voisins.</p>
+
+        <h2>Où sont les opportunités pour les investisseurs&nbsp;?</h2>
+
+        <p>La phase de transition économique que traverse l'Argentine crée des fenêtres d'entrée pour les investisseurs tolérant un risque émergent. Les actifs à surveiller de près :</p>
+
+        <ul>
+          <li>Obligations souveraines d'Amérique latine (rendements élevés, prime de risque en compression)</li>
+          <li>Énergie&nbsp;: pétrole, gaz naturel et lithium (le triangle du lithium : Argentine, Bolivie, Chili)</li>
+          <li>Infrastructures (programme de privatisations en cours)</li>
+          <li>Banques locales (reprise du crédit en accélération)</li>
+          <li>ETF émergents exposés à la région (ex.&nbsp;: iShares MSCI EM Latin America)</li>
+        </ul>
+
+        <p>La logique d'investissement est claire&nbsp;: une phase de transition crée des opportunités d'entrée avant la stabilisation complète. Le risque principal reste l'instabilité politique et monétaire — une réalité avec laquelle les investisseurs en marchés émergents doivent toujours composer.</p>
+
+        <h2>Pour aller plus loin</h2>
+
+        <ul>
+          <li>Cycles inflationnistes historiques et leurs sorties (analyse comparative)</li>
+          <li>Réformes Thatcher (Royaume-Uni, années 1980)&nbsp;: parallèles et divergences avec le cas argentin</li>
+          <li>Chili années 1980&nbsp;: modèle de référence ou contre-exemple&nbsp;?</li>
+          <li>Flux de capitaux en Amérique latine (données BRI, FMI)</li>
+          <li>Politiques monétaires locales et dynamiques de change dans les économies émergentes</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+
+        <p>L'expérience argentine est encore en cours. Des réformes radicales peuvent produire des résultats rapides — mais elles impliquent un coût social et politique important, et leur réussite dépend du temps, de la stabilité institutionnelle et de la capacité du gouvernement à maintenir le cap face aux résistances.</p>
+
+        <p>L'Argentine est aujourd'hui un laboratoire économique grandeur nature. Un cas à suivre de très près — que l'on soit investisseur, économiste, ou simplement citoyen du monde soucieux de comprendre comment les sociétés se réforment.</p>
+
+        <!-- CTA bas de page -->
+        <div class="article-cta">
+          <a href="economie.html" class="btn btn-dark">Voir d'autres articles économie</a>
+        </div>
+
+      </article>
+
+    </div><!-- /.article-layout -->
+
+    <!-- Séparateur décoratif -->
+    <div class="deco-sep"><div class="deco-diamond"></div></div>
+
+    <!-- Section articles similaires -->
+    <section class="related-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Économie</div>
+          <h2 class="section-title">Articles similaires</h2>
+        </div>
+        <div class="related-grid">
+
+          <article class="article-card reveal">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-economy"></div></div>
+              <div class="card-body">
+                <div class="card-meta"><span class="badge badge-economy">Économie</span></div>
+                <div class="tags"><span class="tag">#BCE</span><span class="tag">#Euro</span></div>
+                <h3 class="article-title">La BCE maintient ses taux et divise les économistes européens</h3>
+                <div class="article-footer">
+                  <span class="article-author">Marc Dubois</span>
+                  <div class="article-date-read"><time>29 mars 2026</time><span class="dot-sep">·</span><span>5 min</span></div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="article-card reveal reveal-delay-2">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-economy"></div></div>
+              <div class="card-body">
+                <div class="card-meta"><span class="badge badge-economy">Économie</span></div>
+                <div class="tags"><span class="tag">#Obligations</span><span class="tag">#Taux</span></div>
+                <h3 class="article-title">Les obligations d'État sous pression&nbsp;: la grande rotation obligataire de 2026</h3>
+                <div class="article-footer">
+                  <span class="article-author">Sophie Laurent</span>
+                  <div class="article-date-read"><time>28 mars 2026</time><span class="dot-sep">·</span><span>7 min</span></div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="article-card reveal reveal-delay-4">
+            <a href="article.html">
+              <div class="card-image"><div class="placeholder grad-macro"></div></div>
+              <div class="card-body">
+                <div class="card-meta"><span class="badge badge-macro">Macro</span></div>
+                <div class="tags"><span class="tag">#Inflation</span><span class="tag">#FED</span></div>
+                <h3 class="article-title">La Réserve Fédérale à la croisée des chemins&nbsp;: inflation persistante ou récession imminente&nbsp;?</h3>
+                <div class="article-footer">
+                  <span class="article-author">Sophie Laurent</span>
+                  <div class="article-date-read"><time>30 mars 2026</time><span class="dot-sep">·</span><span>8 min</span></div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">NEXUS<span class="logo-dot">.</span></a>
+          <p class="footer-tagline">Analyses rigoureuses, perspectives indépendantes sur la macro-économie, la géopolitique et les technologies.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" aria-label="RSS"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Rubriques</h4><ul><li><a href="macro.html">Macro</a></li><li><a href="economie.html">Économie</a></li><li><a href="geopolitique.html">Géopolitique</a></li><li><a href="crypto.html">Crypto</a></li><li><a href="technologie.html">Technologie</a></li></ul></div>
+        <div class="footer-col"><h4>À propos</h4><ul><li><a href="about.html">Notre mission</a></li><li><a href="about.html">L'équipe</a></li><li><a href="newsletter.html">Newsletter</a></li></ul></div>
+        <div class="footer-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">CGU</a></li><li><a href="#">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 NEXUS Media. Tous droits réservés.</p>
+        <nav class="footer-legal"><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">CGU</a></nav>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<button id="back-to-top" aria-label="Retour en haut">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script src="main.js"></script>
+</body>
+</html>
